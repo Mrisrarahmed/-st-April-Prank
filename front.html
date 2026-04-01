@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Result Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 360px;
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: #111827;
+    }
+
+    p {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 18px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #111827;
+      min-height: 50px;
+      line-height: 1.6;
+    }
+
+    #memeBox {
+      display: none;
+      margin-top: 20px;
+      animation: pop 0.5s ease;
+    }
+
+    #memeBox img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 3px solid #e5e7eb;
+    }
+
+    #finalText {
+      margin-top: 12px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #dc2626;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Student Result Portal</h2>
+    <p>Enter your details to check your final result</p>
+
+    <input type="text" id="studentName" placeholder="Enter Student Name" />
+    <input type="text" id="seatNumber" placeholder="Enter Seat Number" />
+
+    <button onclick="startPrank()">Check Result</button>
+
+    <div id="status"></div>
+
+    <div id="memeBox">
+      <!-- Yahan apni meme image ka link lagana -->
+      <img id="memeImage" src="https://i.ibb.co/QjcMrRdr/image.png" alt="Meme Image" />
+      <div id="finalText"></div>
+    </div>
+  </div>
+
+  <script>
+    function startPrank() {
+      const name = document.getElementById("studentName").value.trim();
+      const seat = document.getElementById("seatNumber").value.trim();
+      const status = document.getElementById("status");
+      const memeBox = document.getElementById("memeBox");
+      const finalText = document.getElementById("finalText");
+
+      if (!name || !seat) {
+        status.innerHTML = "Please enter Student Name and Seat Number first.";
+        status.style.color = "red";
+        memeBox.style.display = "none";
+        return;
+      }
+
+      status.style.color = "#111827";
+      memeBox.style.display = "none";
+      finalText.innerHTML = "";
+
+      const steps = [
+        "Fetching student data... ⏳",
+        "Connecting to university server... 🌐",
+        "Processing marksheet... 📄",
+        "Getting hidden backup from NASA... 🚀",
+        "Asking aliens for your real result... 👽",
+        "Verifying with chacha from exam cell... 🧔",
+        "System found something suspicious... 😳",
+        "Opening secret result... 💀"
+      ];
+
+      let i = 0;
+      status.innerHTML = steps[i];
+
+      const interval = setInterval(() => {
+        i++;
+        if (i < steps.length) {
+          status.innerHTML = steps[i];
+        } else {
+          clearInterval(interval);
+          status.innerHTML = "";
+          memeBox.style.display = "block";
+          finalText.innerHTML = `April Fool ${name} 😂<br>Seat No: ${seat}<br>You Are Selected... In prank department 😂`;
+        }
+      }, 1400);
+    }
+  </script>
+</body>
+</html>
